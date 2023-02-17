@@ -18,8 +18,8 @@ window.addEventListener("DOMContentLoaded", () => {
       }
       const randomBytes = crypto.randomBytes(bytesNeeded)
       let value = 0
-      for (let i = 0; i < bytesNeeded; i++) {
-        value = (value << 8) + randomBytes[i]
+      for (let i = 0; i < bytesNeeded; i += 1) {
+        value = (value * 256) + randomBytes[i]
       }
       return min + (value % range)
     }
