@@ -9,27 +9,29 @@ window.addEventListener("DOMContentLoaded", () => {
   const generateButton = document.querySelector("#generate-btn")
   const generateField = document.querySelector("#generated-password-input")
 
-  generateButton.addEventListener("click", () => {
-    function generateRandomInt(min, max) {
-      const range = max - min + 1
-      const bytesNeeded = Math.ceil(Math.log2(range) / 8)
-      if (bytesNeeded > 6) {
-        throw new Error('Too many bytes needed')
+  if (generateButton) {
+    generateButton.addEventListener("click", () => {
+      function generateRandomInt(min, max) {
+        const range = max - min + 1
+        const bytesNeeded = Math.ceil(Math.log2(range) / 8)
+        if (bytesNeeded > 6) {
+          throw new Error('Too many bytes needed')
+        }
+        const randomBytes = crypto.randomBytes(bytesNeeded)
+        let value = 0
+        for (let i = 0; i < bytesNeeded; i += 1) {
+          value = (value * 256) + randomBytes[i]
+        }
+        return min + (value % range)
       }
-      const randomBytes = crypto.randomBytes(bytesNeeded)
-      let value = 0
-      for (let i = 0; i < bytesNeeded; i += 1) {
-        value = (value * 256) + randomBytes[i]
-      }
-      return min + (value % range)
-    }
 
-    const length = generateRandomInt(8, 12)
+      const length = generateRandomInt(8, 12)
 
-    const characters = [digits, lower, upper, symbols]
-    const password = randomPassword({ length, characters })
-    generateField.value = password
-  })
+      const characters = [digits, lower, upper, symbols]
+      const password = randomPassword({ length, characters })
+      generateField.value = password
+    })
+  }
 
   function validatePassword() {
     const passwordInput = document.querySelector("#password-input")
@@ -68,49 +70,53 @@ window.addEventListener("DOMContentLoaded", () => {
     }, 200)
   }
 
-  submitButton.addEventListener("click", (event) => {
-    event.preventDefault()
-    if (!validatePassword()) {
-      errorMsg.textContent = "Password must have at least 8 characters and contain at least one uppercase letter, one number, and one special character."
-      blinkErrorMessage()
-    } else {
-      errorMsg.textContent = ""
-      const successModal = new Modal(document.querySelector("#success-modal"))
-      modalBody.textContent = "Congrats on a strong password!"
-      successModal.show()
-      blinkSuccess(5)
+  if (submitButton) {
+    submitButton.addEventListener("click", (event) => {
+      event.preventDefault()
+      if (!validatePassword()) {
+        errorMsg.textContent = "Password must have at least 8 characters and contain at least one uppercase letter, one number, and one special character."
+        blinkErrorMessage()
+      } else {
+        errorMsg.textContent = ""
+        const successModal = new Modal(document.querySelector("#success-modal"))
+        modalBody.textContent = "Congrats on a strong password!"
+        successModal.show()
+        blinkSuccess(5)
 
-      const hideModalOnKeyDown = (e) => {
-        if (event.key === "Enter" || event.key === "Escape") {
-          successModal.hide()
-          document.removeEventListener("keydown", hideModalOnKeyDown)
+        const hideModalOnKeyDown = (e) => {
+          if (event.key === "Enter" || event.key === "Escape") {
+            successModal.hide()
+            document.removeEventListener("keydown", hideModalOnKeyDown)
+          }
         }
+        document.addEventListener("keydown", hideModalOnKeyDown)
       }
-      document.addEventListener("keydown", hideModalOnKeyDown)
-    }
-  })
+    })
+  }
 
-  submitButton.addEventListener("touchstart", (event) => {
-    event.preventDefault()
-    if (!validatePassword()) {
-      errorMsg.textContent = "Password must have at least 8 characters and contain at least one uppercase letter, one number, and one special character."
-      blinkErrorMessage()
-    } else {
-      errorMsg.textContent = ""
-      const successModal = new Modal(document.querySelector("#success-modal"))
-      modalBody.textContent = "Congrats on a strong password!"
-      successModal.show()
-      blinkSuccess(5)
+  if (submitButton) {
+    submitButton.addEventListener("touchstart", (event) => {
+      event.preventDefault()
+      if (!validatePassword()) {
+        errorMsg.textContent = "Password must have at least 8 characters and contain at least one uppercase letter, one number, and one special character."
+        blinkErrorMessage()
+      } else {
+        errorMsg.textContent = ""
+        const successModal = new Modal(document.querySelector("#success-modal"))
+        modalBody.textContent = "Congrats on a strong password!"
+        successModal.show()
+        blinkSuccess(5)
 
-      const hideModalOnKeyDown = (e) => {
-        if (event.key === "Enter" || event.key === "Escape") {
-          successModal.hide()
-          document.removeEventListener("keydown", hideModalOnKeyDown)
+        const hideModalOnKeyDown = (e) => {
+          if (event.key === "Enter" || event.key === "Escape") {
+            successModal.hide()
+            document.removeEventListener("keydown", hideModalOnKeyDown)
+          }
         }
+        document.addEventListener("keydown", hideModalOnKeyDown)
       }
-      document.addEventListener("keydown", hideModalOnKeyDown)
-    }
-  })
+    })
+  }
 
   const headerContainer = document.querySelector("#header-container")
   const container1 = document.querySelector("#header")
