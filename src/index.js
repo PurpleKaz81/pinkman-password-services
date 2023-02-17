@@ -8,14 +8,27 @@ import crypto from 'crypto'
 window.addEventListener("DOMContentLoaded", () => {
   const generateButton = document.querySelector("#generate-btn")
   const generateField = document.querySelector("#generated-password-input")
-  function generatePassword() {
-    const length = Math.floor(crypto.randomInt(8, 13))
-    const characters = [digits, lower, upper, symbols]
-    return randomPassword({ length, characters })
-  }
 
   generateButton.addEventListener("click", () => {
-    generateField.value = generatePassword()
+    function generateRandomInt(min, max) {
+      const range = max - min + 1
+      const bytesNeeded = Math.ceil(Math.log2(range) / 8)
+      if (bytesNeeded > 6) {
+        throw new Error('Too many bytes needed')
+      }
+      const randomBytes = crypto.randomBytes(bytesNeeded)
+      let value = 0
+      for (let i = 0; i < bytesNeeded; i++) {
+        value = (value << 8) + randomBytes[i]
+      }
+      return min + (value % range)
+    }
+
+    const length = generateRandomInt(8, 12)
+
+    const characters = [digits, lower, upper, symbols]
+    const password = randomPassword({ length, characters })
+    generateField.value = password
   })
 
   function validatePassword() {
