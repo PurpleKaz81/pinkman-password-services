@@ -52,6 +52,14 @@ body::before {
   font-weight: 500;
 }
 
+#toggle-password {
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
 .header-slogan {
   display: flex;
   flex-direction: column;

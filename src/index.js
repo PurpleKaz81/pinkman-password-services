@@ -8,6 +8,7 @@ import crypto from 'crypto'
 window.addEventListener("DOMContentLoaded", () => {
   const generateButton = document.querySelector("#generate-btn")
   const generateField = document.querySelector("#generated-password-input")
+  const toggleButton = document.querySelector("#show-password-btn")
 
   if (generateButton) {
     generateButton.addEventListener("click", () => {
@@ -30,6 +31,34 @@ window.addEventListener("DOMContentLoaded", () => {
       const characters = [digits, lower, upper, symbols]
       const password = randomPassword({ length, characters })
       generateField.value = password
+    })
+  }
+
+  if (toggleButton) {
+    toggleButton.addEventListener("click", () => {
+      if (generateField.type === "password") {
+        generateField.type = "text"
+        toggleButton.classList.remove("fa-eye-slash")
+        toggleButton.classList.add("fa-eye")
+      } else {
+        generateField.type = "password"
+        toggleButton.classList.remove("fa-eye")
+        toggleButton.classList.add("fa-eye-slash")
+      }
+    })
+  }
+
+  if (toggleButton) {
+    toggleButton.addEventListener("touchstart", () => {
+      if (generateField.type === "password") {
+        generateField.type = "text"
+        toggleButton.classList.remove("fa-eye-slash")
+        toggleButton.classList.add("fa-eye")
+      } else {
+        generateField.type = "password"
+        toggleButton.classList.remove("fa-eye")
+        toggleButton.classList.add("fa-eye-slash")
+      }
     })
   }
 

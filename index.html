@@ -7,6 +7,7 @@
   <title>Password Authenticator</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
   <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+  <link href="fontawesome-free-6.3.0-web/css/all.css" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
 </head>
 
@@ -22,10 +23,13 @@
               <h2 class="text-dark">Need a password?</h2>
             </div>
 
-            <div id="generator-box" class="input-generator d-grid">
-              <input type="password" class="form-control text-center" name="generated-password" id="generated-password-input" placeholder="Password here, yo!">
-              <button id="generate-btn" type="button" class="btn btn-light mt-2">Generate & Copy</button>
-            </div>
+            <form>
+              <div id="generator-box" class="input-generator d-grid">
+                <input type="password" class="form-control text-center" name="generated-password" id="generated-password-input" placeholder="Password here, yo!" autocomplete="new-password">
+                <i class="fas fa-eye-slash" id="toggle-password"></i>
+                <button id="generate-btn" type="button" class="btn btn-light mt-2">Generate & Copy</button>
+              </div>
+            </form>
 
           </form>
         </div>
@@ -37,7 +41,7 @@
     <div class="row justify-content-center align-items-center">
       <div class="col-12 col-sm-8 col-md-6">
 
-        <div class="header-slogan text-center text-sm-center mb-5 mt-1" id="header-container" data-bs-toggle="popover"
+        <div id="header-container" class="header-slogan text-center text-sm-center mb-5 mt-1" data-bs-toggle="popover"
           data-bs-trigger="hover focus" data-bs-content="'Authenticate, bitch!' -Pinkman, Jesse (2023)">
           <h1 id="header">The Pinkman Password Authenticator</h1>
         </div>
