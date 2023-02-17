@@ -55,9 +55,10 @@ body::before {
   color: #120f11;
 }
 
-#generator-header h2 {
+#generator-header label {
+  font-weight: bold;
   font-size: x-large;
-  font-weight: 500;
+  display: block;
 }
 
 .input-icon {
