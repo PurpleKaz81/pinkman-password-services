@@ -88,7 +88,7 @@ body::before {
   font-weight: bold;
   max-width: 29.375rem;
   margin: 0 auto;
-  padding-top: 1.25rem;
+  padding: 1.25rem;
   text-align: center;
 }
 

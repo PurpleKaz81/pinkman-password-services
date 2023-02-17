@@ -55,30 +55,30 @@
     <div class="row justify-content-center align-items-center">
       <div class="col-12 col-sm-8 col-md-6">
 
-        <div id="authenticator" class="generator-form mt-5 mx-md-auto mx-sm-auto mb-1 mb-md-1 mb-sm-auto p-sm-4">
+        <div id="authenticator" class="password-form mt-5 mx-md-auto mx-sm-auto mb-1 mb-md-1 mb-sm-auto p-sm-4">
           <form>
 
-              <div class="password-form my-auto mx-sm-auto p-sm-4">
-                <div id="label-container" class="text-center mb-3" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="No grandma passwords, please!">
-                  <label id="label" for="password-input" class="form-label d-block">Enter a Password</label>
-                </div>
+            <div id="label-container" class="text-center text-sm-center mb-3" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="No grandma passwords, please!">
+              <label id="label" for="password-input" class="form-label d-block">Enter a Password</label>
+            </div>
 
-                <div id="password-box" class="input-submit d-grid">
-                  <div class="input-icon">
-                    <input type="password" class="form-control text-center" name="password" id="password-input" placeholder="Password">
-                    <i class="fas fa-eye-slash translate-middle-y me-3" id="toggle-password-bottom"></i>
-                  </div>
-                  <button type="submit" id="submit-btn" class="btn btn-primary mt-2">Submit</button>
+            <form>
+              <div id="password-box" class="input-submit d-grid">
+                <div class="input-icon">
+                  <input type="password" class="form-control text-center" name="password" id="password-input" placeholder="Password">
+                  <i class="fas fa-eye-slash translate-middle-y me-3" id="toggle-password-bottom"></i>
                 </div>
-
-                <div id="error-container" class="mx-4 mx-sm-4 mx-md-4" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="WRRROOOOOONG-UH!">
-                  <p id="error-msg"></p>
-                </div>
+                <button type="submit" id="submit-btn" class="btn btn-primary mt-2">Submit</button>
               </div>
+
+              <div id="error-container" class="mx-4 mx-sm-4 mx-md-4" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="WRRROOOOOONG-UH!">
+                <p id="error-msg"></p>
+              </div>
+            </form>
+
 
           </form>
         </div>
-
       </div>
     </div>
   </div>
