@@ -14,6 +14,7 @@
     "babel-loader": "^8.0.4",
     "eslint": "^5.9.0",
     "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-import-resolver-node": "^0.3.7",
     "eslint-plugin-import": "^2.14.0",
     "webpack": "^4.25.1",
     "webpack-cli": "^3.1.2",
@@ -21,6 +22,8 @@
   },
   "dependencies": {
     "@popperjs/core": "^2.11.6",
-    "bootstrap": "^5.2.3"
+    "bootstrap": "^5.2.3",
+    "popper.js": "^1.16.1",
+    "secure-random-password": "^0.2.3"
   }
 }

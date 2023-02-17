@@ -1,0 +1,141 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  position: relative;
+}
+
+body::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("imgs/pinkman.png");
+  background-size: cover;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-position: center;
+  opacity: 0.2;
+  z-index: -1;
+}
+
+.container-fluid {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.col {
+  height: 100%;
+}
+
+#generator {
+  border: 1px solid #ccc;
+  border-radius: .3125rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4),
+              0 2px 5px rgba(0, 0, 0, 0.4),
+              0 3px 6px rgba(0, 0, 0, 0.4),
+              0 5px 8px rgba(0, 0, 0, 0.4);
+  font-weight: bold;
+  max-width: 29.375rem;
+  margin: 0 auto;
+  padding: 1.25rem;
+  text-align: center;
+}
+
+#generator-header h2 {
+  font-size: x-large;
+  font-weight: 500;
+}
+
+.header-slogan {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.password-form {
+  border: 1px solid #ccc;
+  border-radius: .3125rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4),
+              0 2px 5px rgba(0, 0, 0, 0.4),
+              0 3px 6px rgba(0, 0, 0, 0.4),
+              0 5px 8px rgba(0, 0, 0, 0.4);
+  font-weight: bold;
+  max-width: 400px;
+  margin: 0 auto;
+  padding-top: 1.25rem;
+  text-align: center;
+}
+
+.password-form label {
+  font-weight: bold;
+  font-size: x-large;
+  display: block;
+}
+
+.password-form input[type="password"] {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+#password-input::placeholder {
+  color: #474747;
+  transition: color 0.5s ease-in-out;
+}
+
+#password-input:focus::placeholder {
+  color: #d3d3d3;
+  animation: pulse 2s infinite;
+  -webkit-animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    color: #d3d3d3;
+  }
+
+  50% {
+    color: #474747;
+  }
+
+  100% {
+    color: #d3d3d3;
+  }
+}
+
+.blink {
+  animation-name: blink;
+  animation-duration: 1s;
+  animation-iteration-count: 1;
+}
+
+.password-form button {
+  /* width: 100%; */
+  padding: 10px;
+  margin-top: 1.5rem;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-right: 3px;
+  cursor: pointer;
+}
+
+.password-form button:hover {
+  background-color: #0062cc;
+}
+
+.password-form #error-msg {
+  margin-top: 1.3rem;
+  color: rgb(109, 107, 0);
+  font-size: 0.8rem;
+  display: block;
+  text-align: justify;
+  text-align-last: center;
+}
