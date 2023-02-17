@@ -56,11 +56,15 @@
               <label id="label" for="password-input" class="form-label d-block">Enter a Password</label>
             </div>
 
-            <div class="input-submit d-grid mx-3 mx-md-1 mx-sm-1">
-              <input type="password" class="form-control" name="password" id="password-input" placeholder="Password">
-              <i class="fas fa-eye-slash" id="toggle-password-bottom"></i>
-              <button type="submit" id="submit-btn" class="btn btn-primary">Submit</button>
-            </div>
+            <form>
+              <div id="password-box" class="input-submit d-grid">
+                <div class="input-icon">
+                  <input type="password" class="form-control text-center" name="password" id="password-input" placeholder="Password">
+                  <i class="fas fa-eye-slash translate-middle-y me-3" id="toggle-password-bottom"></i>
+                </div>
+                <button type="submit" id="submit-btn" class="btn btn-primary mt-2">Submit</button>
+              </div>
+            </form>
 
             <div id="error-container" class="mx-4 mx-sm-4 mx-md-4" data-bs-toggle="popover" data-bs-trigger="hover focus"
               data-bs-content="WRRROOOOOONG-UH!">

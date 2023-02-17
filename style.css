@@ -47,6 +47,14 @@ body::before {
   text-align: center;
 }
 
+.generator-form button {
+  color: #41363f;
+}
+
+.generator-form button:hover {
+  color: #120f11;
+}
+
 #generator-header h2 {
   font-size: x-large;
   font-weight: 500;
@@ -97,7 +105,7 @@ body::before {
 
 #password-input::placeholder {
   color: #474747;
-  transition: color 0.5s ease-in-out;
+  transition: color 0.375s ease-in-out;
 }
 
 #password-input:focus::placeholder {
@@ -130,7 +138,7 @@ body::before {
   /* width: 100%; */
   padding: 10px;
   margin-top: 1.5rem;
-  background-color: #007bff;
+  background-color: #4b5bd2;
   color: #fff;
   border: none;
   border-right: 3px;
@@ -138,7 +146,7 @@ body::before {
 }
 
 .password-form button:hover {
-  background-color: #0062cc;
+  background-color: #404ba1;
 }
 
 .password-form #error-msg {

@@ -94,7 +94,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
   function validatePassword() {
     const passwordInput = document.querySelector("#password-input")
-    const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/
+    const passwordPattern = /^(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[^a-zA-Z\d]).{8,}$/
     return passwordPattern.test(passwordInput.value)
   }
 
