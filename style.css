@@ -52,10 +52,18 @@ body::before {
   font-weight: 500;
 }
 
-#toggle-password {
-  position: absolute;
-  top: 50%;
-  right: 15px;
+#toggle-password-top {
+  position: relative;
+  top: -115%;
+  right: -110px;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+#toggle-password-bottom {
+  position: relative;
+  top: -135%;
+  right: -110px;
   transform: translateY(-50%);
   cursor: pointer;
 }

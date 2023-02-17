@@ -8,7 +8,9 @@ import crypto from 'crypto'
 window.addEventListener("DOMContentLoaded", () => {
   const generateButton = document.querySelector("#generate-btn")
   const generateField = document.querySelector("#generated-password-input")
-  const toggleButton = document.querySelector("#show-password-btn")
+  const passwordField = document.querySelector("#password-input")
+  const toggleButton1 = document.querySelector("#toggle-password-top")
+  const toggleButton2 = document.querySelector("#toggle-password-bottom")
 
   if (generateButton) {
     generateButton.addEventListener("click", () => {
@@ -34,30 +36,58 @@ window.addEventListener("DOMContentLoaded", () => {
     })
   }
 
-  if (toggleButton) {
-    toggleButton.addEventListener("click", () => {
+  if (toggleButton1) {
+    toggleButton1.addEventListener("click", () => {
       if (generateField.type === "password") {
         generateField.type = "text"
-        toggleButton.classList.remove("fa-eye-slash")
-        toggleButton.classList.add("fa-eye")
+        toggleButton1.classList.remove("fa-eye-slash")
+        toggleButton1.classList.add("fa-eye")
       } else {
         generateField.type = "password"
-        toggleButton.classList.remove("fa-eye")
-        toggleButton.classList.add("fa-eye-slash")
+        toggleButton1.classList.remove("fa-eye")
+        toggleButton1.classList.add("fa-eye-slash")
       }
     })
   }
 
-  if (toggleButton) {
-    toggleButton.addEventListener("touchstart", () => {
+  if (toggleButton1) {
+    toggleButton1.addEventListener("touchstart", () => {
       if (generateField.type === "password") {
         generateField.type = "text"
-        toggleButton.classList.remove("fa-eye-slash")
-        toggleButton.classList.add("fa-eye")
+        toggleButton1.classList.remove("fa-eye-slash")
+        toggleButton1.classList.add("fa-eye")
       } else {
         generateField.type = "password"
-        toggleButton.classList.remove("fa-eye")
-        toggleButton.classList.add("fa-eye-slash")
+        toggleButton1.classList.remove("fa-eye")
+        toggleButton1.classList.add("fa-eye-slash")
+      }
+    })
+  }
+
+  if (toggleButton2) {
+    toggleButton2.addEventListener("click", () => {
+      if (passwordField.type === "password") {
+        passwordField.type = "text"
+        toggleButton2.classList.remove("fa-eye-slash")
+        toggleButton2.classList.add("fa-eye")
+      } else {
+        passwordField.type = "password"
+        toggleButton2.classList.remove("fa-eye")
+        toggleButton2.classList.add("fa-eye-slash")
+      }
+    })
+  }
+
+  if (toggleButton2) {
+    toggleButton2.addEventListener("touchstart", () => {
+      if (passwordField.type === "password") {
+        passwordField.type = "text"
+        toggleButton2.classList.remove("fa-eye-slash")
+        toggleButton2.classList.add("fa-eye")
+      } else {
+        passwordField.type = "password"
+        toggleButton2.classList.remove("fa-eye")
+        toggleButton2.classList.add("fa-eye-slash")
       }
     })
   }
