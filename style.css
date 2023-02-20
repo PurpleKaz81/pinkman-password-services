@@ -22,7 +22,7 @@ body::before {
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url("imgs/pinkman.png");
+  background-image: url("imgs/blue-crystals.png");
   background-size: cover;
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -38,9 +38,10 @@ body::before {
 
 h1 {
   font-family: "Heart-Breaking-Bad", sans-serif;
-  line-height: 2.5rem;
-  font-size: 2.5rem;
+  line-height: 4.2rem;
+  font-size: 4rem;
   letter-spacing: 0.6rem;
+  font-weight: 500;
 }
 
 label {

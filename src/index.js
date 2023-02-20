@@ -32,6 +32,13 @@ window.addEventListener("DOMContentLoaded", () => {
       const characters = [digits, lower, upper, symbols]
       const password = randomPassword({ length, characters })
       generateField.value = password
+
+      navigator.clipboard.writeText(password)
+        .then(() => {
+          console.log("Password copied")
+        }).catch((err) => {
+          console.error("Failed to copy password ", err)
+        });
     })
   }
 
