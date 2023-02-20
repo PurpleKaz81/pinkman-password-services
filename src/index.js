@@ -38,7 +38,7 @@ window.addEventListener("DOMContentLoaded", () => {
           console.log("Password copied")
         }).catch((err) => {
           console.error("Failed to copy password ", err)
-        });
+        })
     })
   }
 
