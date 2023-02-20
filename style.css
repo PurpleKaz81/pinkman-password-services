@@ -27,12 +27,15 @@ body::before {
   z-index: -1;
 }
 
-h1 {
-  font-family: "Heart-Breaking-Bad", sans-serif;
-}
-
 .col {
   height: 100%;
+}
+
+h1 {
+  font-family: "Heart-Breaking-Bad", sans-serif;
+  line-height: 2.5rem;
+  font-size: 2.5rem;
+  letter-spacing: 0.6rem;
 }
 
 #generator {
@@ -159,4 +162,12 @@ h1 {
   display: block;
   text-align: justify;
   text-align-last: center;
+}
+
+@media (max-width: 768px) {
+  h1 {
+    line-height: 2.5rem;
+    font-size: 2.5rem;
+    letter-spacing: 0.6rem;
+  }
 }
