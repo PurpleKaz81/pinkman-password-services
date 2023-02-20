@@ -1,6 +1,6 @@
-## Requirements
+# Requirements
 
-You must have Node and Yarn installed on your computer [with the same versions than in our setup](https://github.com/lewagon/setup/blob/master/macos.md#nodejs). Check it with: 
+You must have Node and Yarn installed on your computer [with the same versions than in our setup](https://github.com/lewagon/setup/blob/master/macos.md#nodejs). Check it with:
 
 ```bash
 node -v
@@ -30,7 +30,7 @@ echo $PATH
 # You should see `./node_modules/.bin` in the list
 ```
 
-If it's not the case, add it: 
+If it's not the case, add it:
 
 ```bash
 cd ~/code/dotfiles/<your_github_nickname>
