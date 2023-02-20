@@ -1,5 +1,4 @@
 import bootstrap, { Modal } from 'bootstrap'
-import { createPopper } from '@popperjs/core'
 import {
   randomPassword, digits, lower, upper, symbols
 } from 'secure-random-password'
@@ -176,30 +175,4 @@ window.addEventListener("DOMContentLoaded", () => {
       }
     })
   }
-
-  const headerContainer = document.querySelector("#header-container")
-  const container1 = document.querySelector("#header")
-  createPopper(headerContainer, {
-    container: container1,
-    placement: "top",
-    offset: [0, 20],
-    sanitize: false,
-    html: true
-  })
-
-  const labelContainer = document.querySelector("#label-container")
-  const container2 = document.querySelector("label")
-  createPopper(labelContainer, {
-    container: container2,
-    placement: "top",
-    offset: [0, 40]
-  })
-
-  const errorContainer = document.querySelector("#error-container")
-  const container3 = document.querySelector("#error-msg")
-  createPopper(errorContainer, {
-    container: container3,
-    placement: "bottom",
-    offset: [0, 15]
-  })
 })
