@@ -1,3 +1,8 @@
+@font-face {
+  font-family: "Heart-Breaking-Bad";
+  src: url("./fonts/Heart\ Breaking\ Bad.otf") format("opentype");
+}
+
 html, body {
   margin: 0;
   padding: 0;
@@ -22,11 +27,8 @@ body::before {
   z-index: -1;
 }
 
-.container-fluid {
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+h1 {
+  font-family: "Heart-Breaking-Bad", sans-serif;
 }
 
 .col {
