@@ -3,6 +3,11 @@
   src: url("./fonts/Heart\ Breaking\ Bad.otf") format("opentype");
 }
 
+@font-face {
+  font-family: "Breaking-Bad-1";
+  src: url("./fonts/Breaking\ Bad-1.ttf") format("opentype");
+}
+
 html, body {
   margin: 0;
   padding: 0;
@@ -38,6 +43,13 @@ h1 {
   letter-spacing: 0.6rem;
 }
 
+label {
+  font-family: "Breaking-Bad-1", sans-serif;
+  line-height: 1.5rem;
+  letter-spacing: 0.1rem;
+  font-size: 2.3125rem;
+}
+
 #generator {
   border: 1px solid #ccc;
   border-radius: .3125rem;
@@ -61,8 +73,7 @@ h1 {
 }
 
 #generator-header label {
-  font-weight: bold;
-  font-size: x-large;
+  font-weight: normal;
   display: block;
 }
 
@@ -98,8 +109,7 @@ h1 {
 }
 
 .password-form label {
-  font-weight: bold;
-  font-size: x-large;
+  font-weight: normal;
   display: block;
 }
 
