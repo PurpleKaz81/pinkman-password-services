@@ -173,7 +173,7 @@ window.addEventListener("DOMContentLoaded", () => {
         blinkSuccess(5)
 
         const hideModalOnKeyDown = (e) => {
-          if (event.key === "Enter" || event.key === "Escape") {
+          if (e.key === "Enter") {
             successModal.hide()
             document.removeEventListener("keydown", hideModalOnKeyDown)
           }
