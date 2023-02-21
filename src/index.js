@@ -1,4 +1,4 @@
-import bootstrap, { Modal } from 'bootstrap'
+import bootstrap, { Modal, Popover } from 'bootstrap'
 import {
   randomPassword, digits, lower, upper, symbols
 } from 'secure-random-password'
@@ -36,6 +36,8 @@ window.addEventListener("DOMContentLoaded", () => {
       navigator.clipboard.writeText(password)
         .then(() => {
           console.log("Password copied")
+          generateField.setAttribute("data-bs-original-title", "")
+          new Popover(generateField).show()
         }).catch((err) => {
           console.error("Failed to copy password ", err)
         })

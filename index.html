@@ -4,7 +4,7 @@
   <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Password Authenticator</title>
+  <title>Pinkman Password Services</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
   <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
   <link href="fontawesome-free-6.3.0-web/css/all.css" rel="stylesheet">
@@ -32,7 +32,7 @@
             <form>
               <div id="generator-box" class="input-generator d-grid">
                 <div class="input-icon">
-                  <input type="password" class="form-control text-center" name="generated-password" id="generated-password-input" placeholder="Password here, yo!" autocomplete="new-password">
+                  <input type="password" class="form-control text-center" name="generated-password" id="generated-password-input" placeholder="Password here, yo!" autocomplete="new-password" data-bs-toggle="popover" data-bs-content="Copied, yo!">
                   <i class="fas fa-eye-slash translate-middle-y me-3" id="toggle-password-top"></i>
                 </div>
                 <button id="generate-btn" type="button" class="btn btn-light mt-2">Generate & Copy</button>
@@ -51,7 +51,7 @@
 
         <div id="header-container" class="header-slogan text-center text-sm-center ">
           <div>
-            <h1 id="header">The Pinkman Password Authenticator</h1>
+            <h1 id="header">Pinkman Password Services</h1>
           </div>
         </div>
 
