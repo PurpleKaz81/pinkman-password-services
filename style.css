@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500&display=swap');
+
 @font-face {
   font-family: "Heart-Breaking-Bad";
   src: url("./fonts/Heart\ Breaking\ Bad.otf") format("opentype");
@@ -6,6 +8,11 @@
 @font-face {
   font-family: "Breaking-Bad-1";
   src: url("./fonts/Breaking\ Bad-1.ttf") format("opentype");
+}
+
+@font-face {
+  font-family: "BREAKING-BAD";
+  src: url("./fonts/BREAKING\ BAD.ttf") format("opentype");
 }
 
 html, body {
@@ -44,11 +51,23 @@ h1 {
   font-weight: 500;
 }
 
-label {
+h6 {
+  font-family: "BREAKING-BAD", sans-serif;
+  line-height: 4.2rem;
+  font-size: 4rem;
+  letter-spacing: 0.6rem;
+  font-weight: 500;
+}
+
+label, h5 {
   font-family: "Breaking-Bad-1", sans-serif;
   line-height: 1.5rem;
   letter-spacing: 0.1rem;
   font-size: 2.3125rem;
+}
+
+#modal-body {
+  font-family: "Oswald", sans-serif;
 }
 
 #generator {
@@ -120,9 +139,7 @@ label {
 }
 
 .password-form input[type="password"] {
-  /* padding: 10px; */
   border: 1px solid #ccc;
-  /* border-radius: 3px; */
 }
 
 #password-input::placeholder {

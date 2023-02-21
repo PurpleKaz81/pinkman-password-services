@@ -10,7 +10,6 @@ window.addEventListener("DOMContentLoaded", () => {
     inputField.addEventListener("keydown", (event) => {
       if (event.key === "Enter") {
         event.preventDefault()
-        console.log("Enter key was pressed inside the input field")
       }
     })
   })
@@ -45,7 +44,6 @@ window.addEventListener("DOMContentLoaded", () => {
 
       navigator.clipboard.writeText(password)
         .then(() => {
-          console.log("Password copied");
           const popover = new Popover(generateField)
           popover.show()
 
@@ -179,6 +177,7 @@ window.addEventListener("DOMContentLoaded", () => {
         errorMsg.textContent = ""
         const successModal = new Modal(document.querySelector("#success-modal"))
         modalBody.textContent = "Congrats on a strong password!"
+        modalBody.style.fontFamily = "Oswald, sans-serif"
         successModal.show()
         blinkSuccess(5)
 
@@ -203,6 +202,7 @@ window.addEventListener("DOMContentLoaded", () => {
         errorMsg.textContent = ""
         const successModal = new Modal(document.querySelector("#success-modal"))
         modalBody.textContent = "Congrats on a strong password!"
+        modalBody.style.fontFamily = "Oswald, sans-serif"
         successModal.show()
         blinkSuccess(5)
 

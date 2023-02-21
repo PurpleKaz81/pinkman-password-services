@@ -4224,6 +4224,11 @@ os-tmpdir@~1.0.2:
   resolved "https://registry.yarnpkg.com/os-tmpdir/-/os-tmpdir-1.0.2.tgz#bbe67406c79aa85c5cfec766fe5734555dfa1274"
   integrity sha512-D2FR03Vir7FIu45XBY20mTb+/ZSWB00sjU9jdQXt83gDrI4Ztz5Fs7/yy74g2N5SVQY4xY1qDr4rNddwYRVX0g==
 
+oswald@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/oswald/-/oswald-1.0.0.tgz#d61ec2a3da65428d6a59f69785d0f5ea4c730b35"
+  integrity sha512-w/bA9YYJl4X8U43rU4mP5xsyr4YTAVytYfkFA63VelcQ2/0zCCzvu4YQPx5+RazTlum+NtJAX9XU1+c2RK2j3g==
+
 p-finally@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/p-finally/-/p-finally-1.0.0.tgz#3fbcfb15b899a44123b34b6dcc18b724336a2cae"
