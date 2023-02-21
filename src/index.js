@@ -42,6 +42,7 @@ window.addEventListener("DOMContentLoaded", () => {
           function dismissPopover() {
             popover.hide()
             document.removeEventListener("click", dismissPopover)
+            document.removeEventListener("touchstart", dismissPopover)
           }
 
           // Hide the popover when it is hidden
@@ -50,11 +51,13 @@ window.addEventListener("DOMContentLoaded", () => {
           // Remove the event listener for clicks when the popover is hidden
           generateField.addEventListener("hide.bs.popover", () => {
             document.removeEventListener("click", dismissPopover)
+            document.removeEventListener("touchstart", dismissPopover)
           })
 
           // Add the event listener for clicks when the popover is shown
           generateField.addEventListener("shown.bs.popover", () => {
             document.addEventListener("click", dismissPopover)
+            document.addEventListener("touchstart", dismissPopover)
           })
         })
         .catch((err) => {
