@@ -1,10 +1,10 @@
 {
-  "name": "javascript-101",
+  "name": "pinkman-password-services",
   "version": "1.0.0",
-  "description": "Starting code for First JavaScript ES6 lecture",
+  "description": "Jesse pinkman fulfills your password needs in this webapp",
   "main": "index.js",
-  "repository": "https://github.com/lewagon/webpack-boilerplate",
-  "author": "ssaunier",
+  "repository": "https://github.com/PurpleKaz81/password-validator",
+  "author": "Rafael Kasinski",
   "license": "MIT",
   "devDependencies": {
     "@babel/core": "^7.1.6",
