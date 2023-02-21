@@ -67,6 +67,11 @@ label {
 
 .generator-form button {
   color: #41363f;
+  padding: 7px;
+  margin-top: 1.5rem;
+  border: none;
+  border-right: 3px;
+  cursor: pointer;
 }
 
 .generator-form button:hover {
@@ -152,8 +157,7 @@ label {
 }
 
 .password-form button {
-  /* width: 100%; */
-  padding: 10px;
+  padding: 7px;
   margin-top: 1.5rem;
   background-color: #4b5bd2;
   color: #fff;
