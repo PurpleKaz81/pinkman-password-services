@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Jesse pinkman fulfills your password needs in this webapp",
   "main": "index.js",
-  "repository": "https://github.com/PurpleKaz81/pinkman-password-services",
+  "repository": "https://github.com/PurpleKaz81/pinkman-password-services.git",
   "author": "Rafael Kasinski",
   "license": "MIT",
   "devDependencies": {
