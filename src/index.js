@@ -35,10 +35,29 @@ window.addEventListener("DOMContentLoaded", () => {
 
       navigator.clipboard.writeText(password)
         .then(() => {
-          console.log("Password copied")
-          generateField.setAttribute("data-bs-original-title", "")
-          new Popover(generateField).show()
-        }).catch((err) => {
+          console.log("Password copied");
+          const popover = new Popover(generateField)
+          popover.show()
+
+          function dismissPopover() {
+            popover.hide()
+            document.removeEventListener("click", dismissPopover)
+          }
+
+          // Hide the popover when it is hidden
+          generateField.addEventListener("hidden.bs.popover", dismissPopover)
+
+          // Remove the event listener for clicks when the popover is hidden
+          generateField.addEventListener("hide.bs.popover", () => {
+            document.removeEventListener("click", dismissPopover)
+          })
+
+          // Add the event listener for clicks when the popover is shown
+          generateField.addEventListener("shown.bs.popover", () => {
+            document.addEventListener("click", dismissPopover)
+          })
+        })
+        .catch((err) => {
           console.error("Failed to copy password ", err)
         })
     })
