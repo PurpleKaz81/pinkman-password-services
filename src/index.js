@@ -1,4 +1,4 @@
-import bootstrap, { Modal, Popover } from 'bootstrap'
+import { Modal, Popover } from 'bootstrap'
 import {
   randomPassword, digits, lower, upper, symbols
 } from 'secure-random-password'
