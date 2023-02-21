@@ -1,0 +1,205 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500&display=swap');
+
+@font-face {
+  font-family: "Heart-Breaking-Bad";
+  src: url("./fonts/Heart\ Breaking\ Bad.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "Breaking-Bad-1";
+  src: url("./fonts/Breaking\ Bad-1.ttf") format("opentype");
+}
+
+@font-face {
+  font-family: "BREAKING-BAD";
+  src: url("./fonts/BREAKING\ BAD.ttf") format("opentype");
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  position: relative;
+}
+
+body::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("imgs/blue-crystals.png");
+  background-size: cover;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-position: center;
+  opacity: 0.2;
+  z-index: -1;
+}
+
+.col {
+  height: 100%;
+}
+
+h1 {
+  font-family: "Heart-Breaking-Bad", sans-serif;
+  line-height: 4.2rem;
+  font-size: 4rem;
+  letter-spacing: 0.6rem;
+  font-weight: 500;
+}
+
+h6 {
+  font-family: "BREAKING-BAD", sans-serif;
+  line-height: 4.2rem;
+  font-size: 4rem;
+  letter-spacing: 0.6rem;
+  font-weight: 500;
+}
+
+label, h5 {
+  font-family: "Breaking-Bad-1", sans-serif;
+  line-height: 1.5rem;
+  letter-spacing: 0.1rem;
+  font-size: 2.3125rem;
+}
+
+#modal-body {
+  font-family: "Oswald", sans-serif;
+}
+
+#generator {
+  border: 1px solid #ccc;
+  border-radius: .3125rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4),
+              0 2px 5px rgba(0, 0, 0, 0.4),
+              0 3px 6px rgba(0, 0, 0, 0.4),
+              0 5px 8px rgba(0, 0, 0, 0.4);
+  font-weight: bold;
+  max-width: 29.375rem;
+  margin: 0 auto;
+  padding: 1.25rem;
+  text-align: center;
+}
+
+.generator-form button {
+  color: #41363f;
+  padding: 7px;
+  margin-top: 1.5rem;
+  border: none;
+  border-right: 3px;
+  cursor: pointer;
+}
+
+.generator-form button:hover {
+  color: #120f11;
+}
+
+#generator-header label {
+  font-weight: normal;
+  display: block;
+}
+
+.input-icon {
+  position: relative;
+}
+
+.fas {
+  position: absolute;
+  top: 50%;
+  right: 0%;
+}
+
+.header-slogan {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.password-form {
+  border: 1px solid #ccc;
+  border-radius: .3125rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4),
+              0 2px 5px rgba(0, 0, 0, 0.4),
+              0 3px 6px rgba(0, 0, 0, 0.4),
+              0 5px 8px rgba(0, 0, 0, 0.4);
+  font-weight: bold;
+  max-width: 29.375rem;
+  margin: 0 auto;
+  padding: 1.25rem;
+  text-align: center;
+}
+
+.password-form label {
+  font-weight: normal;
+  display: block;
+}
+
+.password-form input[type="password"] {
+  border: 1px solid #ccc;
+}
+
+#password-input::placeholder {
+  color: #474747;
+  transition: color 0.375s ease-in-out;
+}
+
+#password-input:focus::placeholder {
+  color: #d3d3d3;
+  animation: pulse 2s infinite;
+  -webkit-animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    color: #d3d3d3;
+  }
+
+  50% {
+    color: #474747;
+  }
+
+  100% {
+    color: #d3d3d3;
+  }
+}
+
+.blink {
+  animation-name: blink;
+  animation-duration: 1s;
+  animation-iteration-count: 1;
+}
+
+.password-form button {
+  padding: 7px;
+  margin-top: 1.5rem;
+  background-color: #4b5bd2;
+  color: #fff;
+  border: none;
+  border-right: 3px;
+  cursor: pointer;
+}
+
+.password-form button:hover {
+  background-color: #404ba1;
+}
+
+.password-form #error-msg {
+  margin-top: 1.3rem;
+  color: rgb(109, 107, 0);
+  font-size: 0.8rem;
+  display: block;
+  text-align: justify;
+  text-align-last: center;
+}
+
+@media (max-width: 768px) {
+  h1 {
+    line-height: 2.5rem;
+    font-size: 2.3rem;
+    letter-spacing: 0.6rem;
+  }
+}
