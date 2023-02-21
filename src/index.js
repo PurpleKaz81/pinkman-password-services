@@ -5,6 +5,16 @@ import {
 import crypto from 'crypto'
 
 window.addEventListener("DOMContentLoaded", () => {
+  const inputFields = document.querySelectorAll("input")
+  inputFields.forEach((inputField) => {
+    inputField.addEventListener("keydown", (event) => {
+      if (event.key === "Enter") {
+        event.preventDefault()
+        console.log("Enter key was pressed inside the input field")
+      }
+    })
+  })
+
   const generateButton = document.querySelector("#generate-btn")
   const generateField = document.querySelector("#generated-password-input")
   const passwordField = document.querySelector("#password-input")
