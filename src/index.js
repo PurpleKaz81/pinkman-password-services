@@ -216,4 +216,13 @@ window.addEventListener("DOMContentLoaded", () => {
       }
     })
   }
+
+  if (passwordField) {
+    passwordField.addEventListener("keydown", (event) => {
+      if (event.key === "Enter") {
+        event.preventDefault();
+        submitButton.click();
+      }
+    });
+  }
 })
