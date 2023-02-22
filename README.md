@@ -38,3 +38,42 @@ If you're interested in contributing to the Pinkman Password Services project, w
 ## License
 
 This project is licensed under the [MIT License](https://mit-license.org/).
+
+## Dependencies
+
+The Pinkman Password Services project has the following dependencies:
+
+### Development dependencies
+
+- @babel/core: ^7.1.6
+- @babel/plugin-proposal-class-properties: ^7.1.0
+- @babel/plugin-transform-runtime: ^7.17.10
+- @babel/preset-env: ^7.1.6
+- babel-loader: ^8.0.4
+- eslint: ^5.9.0
+- eslint-config-airbnb-base: ^13.1.0
+- eslint-import-resolver-node: ^0.3.7
+- eslint-plugin-import: ^2.14.0
+- webpack: ^4.25.1
+- webpack-cli: ^3.1.2
+- webpack-dev-server: ^3.1.10
+
+### Production dependencies
+
+- @fortawesome/fontawesome-free: ^6.3.0
+- @popperjs/core: ^2.11.6
+- bootstrap: ^5.2.3
+- oswald: ^1.0.0
+- popper.js: ^1.16.1
+- secure-random-password: ^0.2.3
+
+### Fonts and PNG
+
+The following fonts are used in the project:
+
+- Oswald: `https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500&display=swap`
+- [Heart-Breaking-Bad](https://www.dafont.com/heart-breaking-bad.font)
+- [Breaking-Bad-1](https://www.dafont.com/breaking-b.font)
+- [BREAKING-BAD](https://www.dafont.com/pt/breaking-bad.font)
+
+The background PNG was generated with [DALL·E2](https://openai.com/dall-e-2/).
