@@ -12,7 +12,7 @@ Pinkman Password Services is a JavaScript web app that provides a simple and sec
 
 ## What is it for?
 
-The Pinkman Password Services project was designed to help users generate and authenticate strong and secure passwords. The tool includes a password generator and authenticator feature that can be used to create unique and secure passwords for any application or website.
+The Pinkman Password Services project's goal is to assist users in creating and verifying safe passwords. Create original, safe passwords for any application or website with the tool's password generator and authenticator function.
 
 ## Features
 
