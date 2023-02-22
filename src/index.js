@@ -187,7 +187,8 @@ window.addEventListener("DOMContentLoaded", () => {
             document.removeEventListener("keydown", hideModalOnKeyDown)
           }
         }
-        document.addEventListener("keydown", hideModalOnKeyDown)
+
+        successModal._element.addEventListener("keydown", hideModalOnKeyDown)
       }
     })
   }
@@ -220,9 +221,9 @@ window.addEventListener("DOMContentLoaded", () => {
   if (passwordField) {
     passwordField.addEventListener("keydown", (event) => {
       if (event.key === "Enter") {
-        event.preventDefault();
-        submitButton.click();
+        event.preventDefault()
+        submitButton.click()
       }
-    });
+    })
   }
 })
