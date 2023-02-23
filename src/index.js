@@ -55,56 +55,44 @@ const generateRandomPassword = () => {
   return randomPassword({ randomPasswordLength, characters })
 }
 
-const setPopoverEventListeners = (dismiss) => {
+const copyPasswordToClipboard = (password) => {
+  const popover = new Popover(generateField)
+  popover.show()
+
+  const dismissPopover = () => {
+    popover.hide()
+    document.removeEventListener("click", dismissPopover)
+    document.removeEventListener("touchstart", dismissPopover)
+  }
+
   // Hide the popover when it is hidden
-  generateField.addEventListener("hidden.bs.popover", dismiss)
+  generateField.addEventListener("hidden.bs.popover", dismissPopover)
 
   // Remove the event listener for clicks when the popover is hidden
   generateField.addEventListener("hide.bs.popover", () => {
-    document.removeEventListener("click", dismiss)
-    document.removeEventListener("touchstart", dismiss)
+    document.removeEventListener("click", dismissPopover)
+    document.removeEventListener("touchstart", dismissPopover)
   })
 
   // Add the event listener for clicks when the popover is shown
   generateField.addEventListener("shown.bs.popover", () => {
-    document.addEventListener("click", dismiss)
-    document.addEventListener("touchstart", dismiss)
+    document.addEventListener("click", dismissPopover)
+    document.addEventListener("touchstart", dismissPopover)
   })
-}
 
-const showPopover = (target) => {
-  const popover = new Popover(target)
-  popover.show()
-
-  const dismiss = () => {
-    popover.hide()
-    document.removeEventListener("click", dismiss)
-    document.removeEventListener("touchstart", dismiss)
-  }
-  setPopoverEventListeners(popover, dismiss)
-}
-
-const copyPasswordToClipboard = (password) => {
   navigator.clipboard
     .writeText(password)
-    .then(() => {
-      showPopover(generateField)
-    })
+    .then(() => { })
     .catch((err) => {
-      console.error("Failed to copy password", err)
+      console.error("Failed to copy password ", err)
     })
 }
-
-const copyRandomPasswordToClipboard = (password) => {
-  copyPasswordToClipboard(password)
-}
-
 
 const handleGenerateButton = () => {
   const password = generateRandomPassword()
   generateField.value = password
 
-  copyRandomPasswordToClipboard(password)
+  copyPasswordToClipboard(password)
 }
 
 const validatePassword = () => {
@@ -243,12 +231,10 @@ window.addEventListener("DOMContentLoaded", () => {
     })
   }
 
-  if (passwordField) {
-    passwordField.addEventListener("keydown", (event) => {
-      if (event.key === ENTER) {
-        event.preventDefault()
-        submitButton.click()
-      }
-    })
-  }
+  passwordField?.addEventListener("keydown", (event) => {
+    if (event.key === ENTER) {
+      event.preventDefault()
+      submitButton.click()
+    }
+  })
 })

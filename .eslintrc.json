@@ -22,5 +22,9 @@
         "extensions": [".js"]
       }
     }
+  },
+  "parser": "babel-eslint",
+  "parserOptions": {
+    "ecmaVersion": 2021
   }
 }
