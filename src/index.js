@@ -22,7 +22,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
   if (generateButton) {
     generateButton.addEventListener("click", () => {
-      function generateRandomInt(min, max) {
+      const generateRandomInt = (min, max) => {
         const range = max - min + 1
         const bytesNeeded = Math.ceil(Math.log2(range) / 8)
         if (bytesNeeded > 6) {
@@ -47,7 +47,7 @@ window.addEventListener("DOMContentLoaded", () => {
           const popover = new Popover(generateField)
           popover.show()
 
-          function dismissPopover() {
+          const dismissPopover = () => {
             popover.hide()
             document.removeEventListener("click", dismissPopover)
             document.removeEventListener("touchstart", dismissPopover)
@@ -130,7 +130,7 @@ window.addEventListener("DOMContentLoaded", () => {
     })
   }
 
-  function validatePassword() {
+  const validatePassword = () => {
     const passwordInput = document.querySelector("#password-input")
     const passwordPattern = /^(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[^a-zA-Z\d]).{8,}$/
     return passwordPattern.test(passwordInput.value)
@@ -141,7 +141,7 @@ window.addEventListener("DOMContentLoaded", () => {
   const modalSuccess = document.querySelector("#success-modal-label")
   const modalBody = document.querySelector("#modal-body")
 
-  function blinkErrorMessage() {
+  const blinkErrorMessage = () => {
     let opacity = 1
     const interval = setInterval(() => {
       opacity = opacity ? 0 : 1
@@ -153,7 +153,7 @@ window.addEventListener("DOMContentLoaded", () => {
     }, 1000)
   }
 
-  function blinkSuccess(timesToBlink) {
+  const blinkSuccess = (timesToBlink) => {
     let opacity = 1
     let blinkCount = 0
     const interval = setInterval(() => {
