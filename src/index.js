@@ -1,29 +1,48 @@
-import { Modal, Popover } from 'bootstrap'
+import { Modal, Popover } from "bootstrap"
 import {
-  randomPassword, digits, lower, upper, symbols
-} from 'secure-random-password'
-import crypto from 'crypto'
+  randomPassword,
+  digits,
+  lower,
+  upper,
+  symbols,
+} from "secure-random-password"
+import crypto from "crypto"
 
-const generateButton = document.querySelector("#generate-btn")
-const generateField = document.querySelector("#generated-password-input")
-const passwordField = document.querySelector("#password-input")
-const toggleButton1 = document.querySelector("#toggle-password-top")
-const toggleButton2 = document.querySelector("#toggle-password-bottom")
-const submitButton = document.querySelector("#submit-btn")
-const errorMsg = document.querySelector("#error-msg")
-const modalSuccess = document.querySelector("#success-modal-label")
-const modalBody = document.querySelector("#modal-body")
+// Destructure required elements from the DOM
+const ENTER = "Enter"
+const inputFields = document.querySelectorAll("input")
+const [
+  generateButton,
+  generateField,
+  passwordField,
+  toggleButton1,
+  toggleButton2,
+  submitButton,
+  errorMsg,
+  modalSuccess,
+  modalBody,
+] = [
+  "#generate-btn",
+  "#generated-password-input",
+  "#password-input",
+  "#toggle-password-top",
+  "#toggle-password-bottom",
+  "#submit-btn",
+  "#error-msg",
+  "#success-modal-label",
+  "#modal-body",
+].map(selector => document.querySelector(selector))
 
 const generateRandomInt = (min, max) => {
   const range = max - min + 1
   const bytesNeeded = Math.ceil(Math.log2(range) / 8)
   if (bytesNeeded > 6) {
-    throw new Error('Too many bytes needed')
+    throw new Error("Too many bytes needed")
   }
   const randomBytes = crypto.randomBytes(bytesNeeded)
   let value = 0
   for (let i = 0; i < bytesNeeded; i += 1) {
-    value = (value * 256) + randomBytes[i]
+    value = value * 256 + randomBytes[i]
   }
   return min + (value % range)
 }
@@ -59,7 +78,8 @@ const copyPasswordToClipboard = (password) => {
     document.addEventListener("touchstart", dismissPopover)
   })
 
-  navigator.clipboard.writeText(password)
+  navigator.clipboard
+    .writeText(password)
     .then(() => {})
     .catch((err) => {
       console.error("Failed to copy password ", err)
@@ -74,9 +94,8 @@ const handleGenerateButton = () => {
 }
 
 const validatePassword = () => {
-  const passwordInput = document.querySelector("#password-input")
   const passwordPattern = /^(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[^a-zA-Z\d]).{8,}$/
-  return passwordPattern.test(passwordInput.value)
+  return passwordPattern.test(passwordField.value)
 }
 
 const blinkErrorMessage = () => {
@@ -84,7 +103,7 @@ const blinkErrorMessage = () => {
   const interval = setInterval(() => {
     opacity = opacity ? 0 : 1
     errorMsg.style.opacity = opacity
-  }, 400);
+  }, 400)
   setTimeout(() => {
     clearInterval(interval)
     errorMsg.style.opacity = 1
@@ -106,10 +125,9 @@ const blinkSuccess = (timesToBlink) => {
 }
 
 window.addEventListener("DOMContentLoaded", () => {
-  const inputFields = document.querySelectorAll("input")
   inputFields.forEach((inputField) => {
     inputField.addEventListener("keydown", (event) => {
-      if (event.key === "Enter") {
+      if (event.key === ENTER) {
         event.preventDefault()
       }
     })
@@ -119,59 +137,33 @@ window.addEventListener("DOMContentLoaded", () => {
     generateButton.addEventListener("click", handleGenerateButton)
   }
 
-  if (toggleButton1) {
-    toggleButton1.addEventListener("click", () => {
-      if (generateField.type === "password") {
-        generateField.type = "text"
-        toggleButton1.classList.remove("fa-eye-slash")
-        toggleButton1.classList.add("fa-eye")
-      } else {
-        generateField.type = "password"
-        toggleButton1.classList.remove("fa-eye")
-        toggleButton1.classList.add("fa-eye-slash")
-      }
-    })
+  const togglePasswordVisibility = (button, field) => {
+    if (field.type === "password") {
+      field.type = "text"
+      button.classList.remove("fa-eye-slash")
+      button.classList.add("fa-eye")
+    } else {
+      field.type = "password"
+      button.classList.remove("fa-eye")
+      button.classList.add("fa-eye-slash")
+    }
   }
 
   if (toggleButton1) {
+    toggleButton1.addEventListener("click", () => {
+      togglePasswordVisibility(toggleButton1, generateField)
+    })
     toggleButton1.addEventListener("touchstart", () => {
-      if (generateField.type === "password") {
-        generateField.type = "text"
-        toggleButton1.classList.remove("fa-eye-slash")
-        toggleButton1.classList.add("fa-eye")
-      } else {
-        generateField.type = "password"
-        toggleButton1.classList.remove("fa-eye")
-        toggleButton1.classList.add("fa-eye-slash")
-      }
+      togglePasswordVisibility(toggleButton1, generateField)
     })
   }
 
   if (toggleButton2) {
     toggleButton2.addEventListener("click", () => {
-      if (passwordField.type === "password") {
-        passwordField.type = "text"
-        toggleButton2.classList.remove("fa-eye-slash")
-        toggleButton2.classList.add("fa-eye")
-      } else {
-        passwordField.type = "password"
-        toggleButton2.classList.remove("fa-eye")
-        toggleButton2.classList.add("fa-eye-slash")
-      }
+      togglePasswordVisibility(toggleButton2, passwordField)
     })
-  }
-
-  if (toggleButton2) {
     toggleButton2.addEventListener("touchstart", () => {
-      if (passwordField.type === "password") {
-        passwordField.type = "text"
-        toggleButton2.classList.remove("fa-eye-slash")
-        toggleButton2.classList.add("fa-eye")
-      } else {
-        passwordField.type = "password"
-        toggleButton2.classList.remove("fa-eye")
-        toggleButton2.classList.add("fa-eye-slash")
-      }
+      togglePasswordVisibility(toggleButton2, passwordField)
     })
   }
 
@@ -183,14 +175,16 @@ window.addEventListener("DOMContentLoaded", () => {
         blinkErrorMessage()
       } else {
         errorMsg.textContent = ""
-        const successModal = new Modal(document.querySelector("#success-modal"))
+        const successModal = new Modal(
+          document.querySelector("#success-modal")
+        )
         modalBody.textContent = "Congrats on a strong password!"
         modalBody.style.fontFamily = "Oswald, sans-serif"
         successModal.show()
         blinkSuccess(5)
 
         const hideModalOnKeyDown = (e) => {
-          if (e.key === "Enter") {
+          if (e.key === ENTER) {
             successModal.hide()
             document.removeEventListener("keydown", hideModalOnKeyDown)
           }
@@ -210,14 +204,16 @@ window.addEventListener("DOMContentLoaded", () => {
         blinkErrorMessage()
       } else {
         errorMsg.textContent = ""
-        const successModal = new Modal(document.querySelector("#success-modal"))
+        const successModal = new Modal(
+          document.querySelector("#success-modal")
+        )
         modalBody.textContent = "Congrats on a strong password!"
         modalBody.style.fontFamily = "Oswald, sans-serif"
         successModal.show()
         blinkSuccess(5)
 
         const hideModalOnKeyDown = (e) => {
-          if (event.key === "Enter") {
+          if (event.key === ENTER) {
             successModal.hide()
             document.removeEventListener("keydown", hideModalOnKeyDown)
           }
@@ -229,7 +225,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
   if (passwordField) {
     passwordField.addEventListener("keydown", (event) => {
-      if (event.key === "Enter") {
+      if (event.key === ENTER) {
         event.preventDefault()
         submitButton.click()
       }
