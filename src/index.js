@@ -33,7 +33,7 @@ const [
   "#error-msg",
   "#success-modal-label",
   "#modal-body",
-].map(selector => document.querySelector(selector))
+].map((selector) => document.querySelector(selector))
 
 const generateRandomInt = (min, max) => {
   const range = max - min + 1
@@ -82,7 +82,7 @@ const copyPasswordToClipboard = (password) => {
 
   navigator.clipboard
     .writeText(password)
-    .then(() => { })
+    .then(() => {})
     .catch((err) => {
       console.error("Failed to copy password ", err)
     })
@@ -96,7 +96,8 @@ const handleGenerateButton = () => {
 }
 
 const validatePassword = () => {
-  const passwordPattern = /^(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[^a-zA-Z\d]).{8,}$/
+  const passwordPattern =
+    /^(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[^a-zA-Z\d]).{8,}$/
   return passwordPattern.test(passwordField.value)
 }
 
@@ -113,7 +114,8 @@ const showErrorAnimation = () => {
 }
 
 const showSuccessAnimation = (timesToBlink) => {
-  const SHOW_SUCCESS_ANIMATION_DURATION_MS = SHOW_SUCCESS_ANIMATION_INTERVAL_MS * timesToBlink * 2
+  const SHOW_SUCCESS_ANIMATION_DURATION_MS =
+    SHOW_SUCCESS_ANIMATION_INTERVAL_MS * timesToBlink * 2
   let opacity = 1
   let blinkCount = 0
   const interval = setInterval(() => {
@@ -131,7 +133,6 @@ const showSuccessAnimation = (timesToBlink) => {
   }, SHOW_SUCCESS_ANIMATION_DURATION_MS)
 }
 
-
 window.addEventListener("DOMContentLoaded", () => {
   inputFields.forEach((inputField) => {
     inputField.addEventListener("keydown", (event) => {
@@ -141,9 +142,7 @@ window.addEventListener("DOMContentLoaded", () => {
     })
   })
 
-  if (generateButton) {
-    generateButton.addEventListener("click", handleGenerateButton)
-  }
+  generateButton?.addEventListener("click", handleGenerateButton)
 
   const togglePasswordVisibility = (button, field) => {
     if (field.type === "password") {
@@ -157,84 +156,78 @@ window.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  if (toggleButton1) {
-    toggleButton1.addEventListener("click", () => {
-      togglePasswordVisibility(toggleButton1, generateField)
-    })
-    toggleButton1.addEventListener("touchstart", () => {
-      togglePasswordVisibility(toggleButton1, generateField)
-    })
+  const addEventListeners = (element, types, handler) => {
+    types.forEach((type) => element.addEventListener(type, handler))
   }
 
-  if (toggleButton2) {
-    toggleButton2.addEventListener("click", () => {
-      togglePasswordVisibility(toggleButton2, passwordField)
-    })
-    toggleButton2.addEventListener("touchstart", () => {
-      togglePasswordVisibility(toggleButton2, passwordField)
-    })
+  const toggleHandler = (button, field) => () => {
+    togglePasswordVisibility(button, field)
   }
 
-  if (submitButton) {
-    submitButton.addEventListener("click", (event) => {
-      event.preventDefault()
-      if (!validatePassword()) {
-        errorMsg.textContent = "Password must have at least 8 characters and contain at least one uppercase letter, one number, and one special character."
-        showErrorAnimation()
-      } else {
-        errorMsg.textContent = ""
-        const successModal = new Modal(
-          document.querySelector("#success-modal")
-        )
-        modalBody.textContent = "Congrats on a strong password!"
-        modalBody.style.fontFamily = "Oswald, sans-serif"
-        successModal.show()
-        showSuccessAnimation(5)
+  addEventListeners(
+    toggleButton1,
+    ["click", "touchstart"],
+    toggleHandler(toggleButton1, generateField)
+  )
+  addEventListeners(
+    toggleButton2,
+    ["click", "touchstart"],
+    toggleHandler(toggleButton2, passwordField)
+  )
 
-        const hideModalOnKeyDown = (e) => {
-          if (e.key === ENTER) {
-            successModal.hide()
-            document.removeEventListener("keydown", hideModalOnKeyDown)
-          }
+  submitButton?.addEventListener("click", (event) => {
+    event.preventDefault()
+    if (!validatePassword()) {
+      errorMsg.textContent =
+        "Password must have at least 8 characters and contain at least one uppercase letter, one number, and one special character."
+      showErrorAnimation()
+    } else {
+      errorMsg.textContent = ""
+      const successModal = new Modal(document.querySelector("#success-modal"))
+      modalBody.textContent = "Congrats on a strong password!"
+      modalBody.style.fontFamily = "Oswald, sans-serif"
+      successModal.show()
+      showSuccessAnimation(5)
+
+      const hideModalOnKeyDown = (e) => {
+        if (e.key === ENTER) {
+          successModal.hide()
+          document.removeEventListener("keydown", hideModalOnKeyDown)
         }
-
-        // eslint-disable-next-line no-underscore-dangle
-        successModal._element.addEventListener("keydown", hideModalOnKeyDown)
       }
-    })
-  }
 
-  if (submitButton) {
-    submitButton.addEventListener("touchstart", (event) => {
-      event.preventDefault()
-      if (!validatePassword()) {
-        errorMsg.textContent = "Password must have at least 8 characters and contain at least one uppercase letter, one number, and one special character."
-        showErrorAnimation()
-      } else {
-        errorMsg.textContent = ""
-        const successModal = new Modal(
-          document.querySelector("#success-modal")
-        )
-        modalBody.textContent = "Congrats on a strong password!"
-        modalBody.style.fontFamily = "Oswald, sans-serif"
-        successModal.show()
-        showSuccessAnimation(5)
+      successModal._element.addEventListener("keydown", hideModalOnKeyDown)
+    }
+  })
 
-        const hideModalOnKeyDown = (e) => {
-          if (event.key === ENTER) {
-            successModal.hide()
-            document.removeEventListener("keydown", hideModalOnKeyDown)
-          }
+  submitButton?.addEventListener("touchstart", (event) => {
+    event.preventDefault()
+    if (!validatePassword()) {
+      errorMsg.textContent =
+        "Password must have at least 8 characters and contain at least one uppercase letter, one number, and one special character."
+      showErrorAnimation()
+    } else {
+      errorMsg.textContent = ""
+      const successModal = new Modal(document.querySelector("#success-modal"))
+      modalBody.textContent = "Congrats on a strong password!"
+      modalBody.style.fontFamily = "Oswald, sans-serif"
+      successModal.show()
+      showSuccessAnimation(5)
+
+      const hideModalOnKeyDown = (e) => {
+        if (e.key === ENTER) {
+          successModal.hide()
+          document.removeEventListener("keydown", hideModalOnKeyDown)
         }
-        document.addEventListener("keydown", hideModalOnKeyDown)
       }
-    })
-  }
+      document.addEventListener("keydown", hideModalOnKeyDown)
+    }
+  })
 
   passwordField?.addEventListener("keydown", (event) => {
     if (event.key === ENTER) {
       event.preventDefault()
-      submitButton.click()
+      submitButton?.click()
     }
   })
 })
