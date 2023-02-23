@@ -8,7 +8,6 @@ import {
 } from "secure-random-password"
 import crypto from "crypto"
 
-// Destructure required elements from the DOM
 const ENTER = "Enter"
 const inputFields = document.querySelectorAll("input")
 const [
@@ -80,7 +79,7 @@ const copyPasswordToClipboard = (password) => {
 
   navigator.clipboard
     .writeText(password)
-    .then(() => {})
+    .then(() => { })
     .catch((err) => {
       console.error("Failed to copy password ", err)
     })
