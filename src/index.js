@@ -4,6 +4,107 @@ import {
 } from 'secure-random-password'
 import crypto from 'crypto'
 
+const generateButton = document.querySelector("#generate-btn")
+const generateField = document.querySelector("#generated-password-input")
+const passwordField = document.querySelector("#password-input")
+const toggleButton1 = document.querySelector("#toggle-password-top")
+const toggleButton2 = document.querySelector("#toggle-password-bottom")
+const submitButton = document.querySelector("#submit-btn")
+const errorMsg = document.querySelector("#error-msg")
+const modalSuccess = document.querySelector("#success-modal-label")
+const modalBody = document.querySelector("#modal-body")
+
+const generateRandomInt = (min, max) => {
+  const range = max - min + 1
+  const bytesNeeded = Math.ceil(Math.log2(range) / 8)
+  if (bytesNeeded > 6) {
+    throw new Error('Too many bytes needed')
+  }
+  const randomBytes = crypto.randomBytes(bytesNeeded)
+  let value = 0
+  for (let i = 0; i < bytesNeeded; i += 1) {
+    value = (value * 256) + randomBytes[i]
+  }
+  return min + (value % range)
+}
+
+const generateRandomPassword = () => {
+  const length = generateRandomInt(8, 12)
+  const characters = [digits, lower, upper, symbols]
+  return randomPassword({ length, characters })
+}
+
+const copyPasswordToClipboard = (password) => {
+  const popover = new Popover(generateField)
+  popover.show()
+
+  const dismissPopover = () => {
+    popover.hide()
+    document.removeEventListener("click", dismissPopover)
+    document.removeEventListener("touchstart", dismissPopover)
+  }
+
+  // Hide the popover when it is hidden
+  generateField.addEventListener("hidden.bs.popover", dismissPopover)
+
+  // Remove the event listener for clicks when the popover is hidden
+  generateField.addEventListener("hide.bs.popover", () => {
+    document.removeEventListener("click", dismissPopover)
+    document.removeEventListener("touchstart", dismissPopover)
+  })
+
+  // Add the event listener for clicks when the popover is shown
+  generateField.addEventListener("shown.bs.popover", () => {
+    document.addEventListener("click", dismissPopover)
+    document.addEventListener("touchstart", dismissPopover)
+  })
+
+  navigator.clipboard.writeText(password)
+    .then(() => {})
+    .catch((err) => {
+      console.error("Failed to copy password ", err)
+    })
+}
+
+const handleGenerateButton = () => {
+  const password = generateRandomPassword()
+  generateField.value = password
+
+  copyPasswordToClipboard(password)
+}
+
+const validatePassword = () => {
+  const passwordInput = document.querySelector("#password-input")
+  const passwordPattern = /^(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[^a-zA-Z\d]).{8,}$/
+  return passwordPattern.test(passwordInput.value)
+}
+
+const blinkErrorMessage = () => {
+  let opacity = 1
+  const interval = setInterval(() => {
+    opacity = opacity ? 0 : 1
+    errorMsg.style.opacity = opacity
+  }, 400);
+  setTimeout(() => {
+    clearInterval(interval)
+    errorMsg.style.opacity = 1
+  }, 1000)
+}
+
+const blinkSuccess = (timesToBlink) => {
+  let opacity = 1
+  let blinkCount = 0
+  const interval = setInterval(() => {
+    opacity = opacity ? 0 : 1
+    modalSuccess.style.opacity = opacity
+    blinkCount += 1
+    if (blinkCount === timesToBlink * 2) {
+      clearInterval(interval)
+      modalSuccess.style.opacity = 1
+    }
+  }, 200)
+}
+
 window.addEventListener("DOMContentLoaded", () => {
   const inputFields = document.querySelectorAll("input")
   inputFields.forEach((inputField) => {
@@ -14,64 +115,8 @@ window.addEventListener("DOMContentLoaded", () => {
     })
   })
 
-  const generateButton = document.querySelector("#generate-btn")
-  const generateField = document.querySelector("#generated-password-input")
-  const passwordField = document.querySelector("#password-input")
-  const toggleButton1 = document.querySelector("#toggle-password-top")
-  const toggleButton2 = document.querySelector("#toggle-password-bottom")
-
   if (generateButton) {
-    generateButton.addEventListener("click", () => {
-      const generateRandomInt = (min, max) => {
-        const range = max - min + 1
-        const bytesNeeded = Math.ceil(Math.log2(range) / 8)
-        if (bytesNeeded > 6) {
-          throw new Error('Too many bytes needed')
-        }
-        const randomBytes = crypto.randomBytes(bytesNeeded)
-        let value = 0
-        for (let i = 0; i < bytesNeeded; i += 1) {
-          value = (value * 256) + randomBytes[i]
-        }
-        return min + (value % range)
-      }
-
-      const length = generateRandomInt(8, 12)
-
-      const characters = [digits, lower, upper, symbols]
-      const password = randomPassword({ length, characters })
-      generateField.value = password
-
-      navigator.clipboard.writeText(password)
-        .then(() => {
-          const popover = new Popover(generateField)
-          popover.show()
-
-          const dismissPopover = () => {
-            popover.hide()
-            document.removeEventListener("click", dismissPopover)
-            document.removeEventListener("touchstart", dismissPopover)
-          }
-
-          // Hide the popover when it is hidden
-          generateField.addEventListener("hidden.bs.popover", dismissPopover)
-
-          // Remove the event listener for clicks when the popover is hidden
-          generateField.addEventListener("hide.bs.popover", () => {
-            document.removeEventListener("click", dismissPopover)
-            document.removeEventListener("touchstart", dismissPopover)
-          })
-
-          // Add the event listener for clicks when the popover is shown
-          generateField.addEventListener("shown.bs.popover", () => {
-            document.addEventListener("click", dismissPopover)
-            document.addEventListener("touchstart", dismissPopover)
-          })
-        })
-        .catch((err) => {
-          console.error("Failed to copy password ", err)
-        })
-    })
+    generateButton.addEventListener("click", handleGenerateButton)
   }
 
   if (toggleButton1) {
@@ -128,43 +173,6 @@ window.addEventListener("DOMContentLoaded", () => {
         toggleButton2.classList.add("fa-eye-slash")
       }
     })
-  }
-
-  const validatePassword = () => {
-    const passwordInput = document.querySelector("#password-input")
-    const passwordPattern = /^(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[^a-zA-Z\d]).{8,}$/
-    return passwordPattern.test(passwordInput.value)
-  }
-
-  const submitButton = document.querySelector("#submit-btn")
-  const errorMsg = document.querySelector("#error-msg")
-  const modalSuccess = document.querySelector("#success-modal-label")
-  const modalBody = document.querySelector("#modal-body")
-
-  const blinkErrorMessage = () => {
-    let opacity = 1
-    const interval = setInterval(() => {
-      opacity = opacity ? 0 : 1
-      errorMsg.style.opacity = opacity
-    }, 400);
-    setTimeout(() => {
-      clearInterval(interval)
-      errorMsg.style.opacity = 1
-    }, 1000)
-  }
-
-  const blinkSuccess = (timesToBlink) => {
-    let opacity = 1
-    let blinkCount = 0
-    const interval = setInterval(() => {
-      opacity = opacity ? 0 : 1
-      modalSuccess.style.opacity = opacity
-      blinkCount += 1
-      if (blinkCount === timesToBlink * 2) {
-        clearInterval(interval)
-        modalSuccess.style.opacity = 1
-      }
-    }, 200)
   }
 
   if (submitButton) {
