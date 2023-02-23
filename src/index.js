@@ -47,9 +47,9 @@ const generateRandomInt = (min, max) => {
 }
 
 const generateRandomPassword = () => {
-  const length = generateRandomInt(8, 12)
+  const randomPasswordLength = generateRandomInt(8, 12)
   const characters = [digits, lower, upper, symbols]
-  return randomPassword({ length, characters })
+  return randomPassword({ randomPasswordLength, characters })
 }
 
 const copyPasswordToClipboard = (password) => {
@@ -97,7 +97,7 @@ const validatePassword = () => {
   return passwordPattern.test(passwordField.value)
 }
 
-const blinkErrorMessage = () => {
+const showErrorAnimation = () => {
   let opacity = 1
   const interval = setInterval(() => {
     opacity = opacity ? 0 : 1
@@ -171,7 +171,7 @@ window.addEventListener("DOMContentLoaded", () => {
       event.preventDefault()
       if (!validatePassword()) {
         errorMsg.textContent = "Password must have at least 8 characters and contain at least one uppercase letter, one number, and one special character."
-        blinkErrorMessage()
+        showErrorAnimation()
       } else {
         errorMsg.textContent = ""
         const successModal = new Modal(
@@ -200,7 +200,7 @@ window.addEventListener("DOMContentLoaded", () => {
       event.preventDefault()
       if (!validatePassword()) {
         errorMsg.textContent = "Password must have at least 8 characters and contain at least one uppercase letter, one number, and one special character."
-        blinkErrorMessage()
+        showErrorAnimation()
       } else {
         errorMsg.textContent = ""
         const successModal = new Modal(
