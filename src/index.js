@@ -52,7 +52,7 @@ const generateRandomPassword = () => {
   return randomPassword({ randomPasswordLength, characters })
 }
 
-const copyPasswordToClipboard = (password) => {
+const copyRandomPasswordToClipboard = (password) => {
   const popover = new Popover(generateField)
   popover.show()
 
@@ -89,7 +89,7 @@ const handleGenerateButton = () => {
   const password = generateRandomPassword()
   generateField.value = password
 
-  copyPasswordToClipboard(password)
+  copyRandomPasswordToClipboard(password)
 }
 
 const validatePassword = () => {
@@ -109,7 +109,7 @@ const showErrorAnimation = () => {
   }, 1000)
 }
 
-const blinkSuccess = (timesToBlink) => {
+const showSuccessAnimation = (timesToBlink) => {
   let opacity = 1
   let blinkCount = 0
   const interval = setInterval(() => {
@@ -180,7 +180,7 @@ window.addEventListener("DOMContentLoaded", () => {
         modalBody.textContent = "Congrats on a strong password!"
         modalBody.style.fontFamily = "Oswald, sans-serif"
         successModal.show()
-        blinkSuccess(5)
+        showSuccessAnimation(5)
 
         const hideModalOnKeyDown = (e) => {
           if (e.key === ENTER) {
@@ -209,7 +209,7 @@ window.addEventListener("DOMContentLoaded", () => {
         modalBody.textContent = "Congrats on a strong password!"
         modalBody.style.fontFamily = "Oswald, sans-serif"
         successModal.show()
-        blinkSuccess(5)
+        showSuccessAnimation(5)
 
         const hideModalOnKeyDown = (e) => {
           if (event.key === ENTER) {
