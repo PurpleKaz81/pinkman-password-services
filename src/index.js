@@ -10,6 +10,9 @@ import crypto from "crypto"
 
 const ENTER = "Enter"
 const inputFields = document.querySelectorAll("input")
+const SHOW_ERROR_ANIMATION_INTERVAL_MS = 400
+const SHOW_ERROR_ANIMATION_DURATION_MS = 1000
+const SHOW_SUCCESS_ANIMATION_INTERVAL_MS = 200
 const [
   generateButton,
   generateField,
@@ -52,38 +55,50 @@ const generateRandomPassword = () => {
   return randomPassword({ randomPasswordLength, characters })
 }
 
-const copyRandomPasswordToClipboard = (password) => {
-  const popover = new Popover(generateField)
-  popover.show()
-
-  const dismissPopover = () => {
-    popover.hide()
-    document.removeEventListener("click", dismissPopover)
-    document.removeEventListener("touchstart", dismissPopover)
-  }
-
+const setPopoverEventListeners = (dismiss) => {
   // Hide the popover when it is hidden
-  generateField.addEventListener("hidden.bs.popover", dismissPopover)
+  generateField.addEventListener("hidden.bs.popover", dismiss)
 
   // Remove the event listener for clicks when the popover is hidden
   generateField.addEventListener("hide.bs.popover", () => {
-    document.removeEventListener("click", dismissPopover)
-    document.removeEventListener("touchstart", dismissPopover)
+    document.removeEventListener("click", dismiss)
+    document.removeEventListener("touchstart", dismiss)
   })
 
   // Add the event listener for clicks when the popover is shown
   generateField.addEventListener("shown.bs.popover", () => {
-    document.addEventListener("click", dismissPopover)
-    document.addEventListener("touchstart", dismissPopover)
+    document.addEventListener("click", dismiss)
+    document.addEventListener("touchstart", dismiss)
   })
+}
 
+const showPopover = (target) => {
+  const popover = new Popover(target)
+  popover.show()
+
+  const dismiss = () => {
+    popover.hide()
+    document.removeEventListener("click", dismiss)
+    document.removeEventListener("touchstart", dismiss)
+  }
+  setPopoverEventListeners(popover, dismiss)
+}
+
+const copyPasswordToClipboard = (password) => {
   navigator.clipboard
     .writeText(password)
-    .then(() => { })
+    .then(() => {
+      showPopover(generateField)
+    })
     .catch((err) => {
-      console.error("Failed to copy password ", err)
+      console.error("Failed to copy password", err)
     })
 }
+
+const copyRandomPasswordToClipboard = (password) => {
+  copyPasswordToClipboard(password)
+}
+
 
 const handleGenerateButton = () => {
   const password = generateRandomPassword()
@@ -102,14 +117,15 @@ const showErrorAnimation = () => {
   const interval = setInterval(() => {
     opacity = opacity ? 0 : 1
     errorMsg.style.opacity = opacity
-  }, 400)
+  }, SHOW_ERROR_ANIMATION_INTERVAL_MS)
   setTimeout(() => {
     clearInterval(interval)
     errorMsg.style.opacity = 1
-  }, 1000)
+  }, SHOW_ERROR_ANIMATION_DURATION_MS)
 }
 
 const showSuccessAnimation = (timesToBlink) => {
+  const SHOW_SUCCESS_ANIMATION_DURATION_MS = SHOW_SUCCESS_ANIMATION_INTERVAL_MS * timesToBlink * 2
   let opacity = 1
   let blinkCount = 0
   const interval = setInterval(() => {
@@ -120,8 +136,13 @@ const showSuccessAnimation = (timesToBlink) => {
       clearInterval(interval)
       modalSuccess.style.opacity = 1
     }
-  }, 200)
+  }, SHOW_SUCCESS_ANIMATION_INTERVAL_MS)
+  setTimeout(() => {
+    clearInterval(interval)
+    modalSuccess.style.opacity = 1
+  }, SHOW_SUCCESS_ANIMATION_DURATION_MS)
 }
+
 
 window.addEventListener("DOMContentLoaded", () => {
   inputFields.forEach((inputField) => {
