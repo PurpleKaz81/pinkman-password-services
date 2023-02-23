@@ -188,6 +188,7 @@ window.addEventListener("DOMContentLoaded", () => {
           }
         }
 
+        // eslint-disable-next-line no-underscore-dangle
         successModal._element.addEventListener("keydown", hideModalOnKeyDown)
       }
     })
