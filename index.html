@@ -32,10 +32,10 @@
             <form>
               <div id="generator-box" class="input-generator d-grid">
                 <div class="input-icon">
-                  <input type="password" class="form-control text-center" name="generated-password" id="generated-password-input" placeholder="Cook up something random" data-bs-toggle="popover" data-bs-content="Copied, yo!" autocomplete="off" tabindex="-1">
-                  <i class="fas fa-eye-slash translate-middle-y me-3" id="toggle-password-top"></i>
+                  <input type="password" class="form-control text-center" name="generated-password" id="generated-password-input" placeholder="Cook up something random" data-bs-toggle="popover" data-bs-content="Copied, yo!" autocomplete="off" tabindex="1">
+                  <i class="fas fa-eye-slash translate-middle-y me-3" id="toggle-password-top" tabindex="2"></i>
                 </div>
-                <button id="generate-btn" type="button" class="btn btn-light mt-2">Make It Random!</button>
+                <button id="generate-btn" type="button" class="btn btn-light mt-2" tabindex="3">Make It Random!</button>
               </div>
             </form>
 
@@ -73,10 +73,10 @@
             <form>
               <div id="password-box" class="input-submit d-grid">
                 <div class="input-icon">
-                  <input type="password" class="form-control text-center" name="password" id="password-input" placeholder="Password here, yo!">
-                  <i class="fas fa-eye-slash translate-middle-y me-3" id="toggle-password-bottom"></i>
+                  <input type="password" class="form-control text-center" name="password" id="password-input" placeholder="Password here, yo!" tabindex="4">
+                  <i class="fas fa-eye-slash translate-middle-y me-3" id="toggle-password-bottom" tabindex="5"></i>
                 </div>
-                <button type="submit" id="submit-btn" class="btn btn-primary mt-2">Make It Happen</button>
+                <button type="submit" id="submit-btn" class="btn btn-primary mt-2" tabindex="6">Make It Happen</button>
               </div>
 
               <div id="error-container" class="mx-4 mx-sm-4 mx-md-4">
