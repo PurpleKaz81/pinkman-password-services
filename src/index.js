@@ -54,7 +54,11 @@ const copyPasswordToClipboard = (password) => {
   const popover = new bootstrap.Popover(generateField)
   popover.show()
 
-  const dismissPopover = () => {
+  const dismissPopover = (event) => {
+    if (event.target === generateButton) {
+      return
+    }
+
     popover.hide()
     document.removeEventListener("click", dismissPopover)
     document.removeEventListener("touchstart", dismissPopover)
@@ -137,8 +141,6 @@ window.addEventListener("DOMContentLoaded", () => {
     })
   })
 
-  generateButton?.addEventListener("click", handleGenerateButton)
-
   const togglePasswordVisibility = (button, field) => {
     if (field.type === "password") {
       field.type = "text"
@@ -155,9 +157,14 @@ window.addEventListener("DOMContentLoaded", () => {
     types.forEach((type) => element.addEventListener(type, handler))
   }
 
-  const toggleHandler = (button, field) => () => {
-    togglePasswordVisibility(button, field)
+  const toggleHandler = (button, field) => (event) => {
+    if (["click", "touchstart"].includes(event.type) || event.key === ENTER) {
+      togglePasswordVisibility(button, field)
+    }
   }
+
+
+  generateButton?.addEventListener("click", handleGenerateButton)
 
   const handleSubmitEvent = (event) => {
     event.preventDefault()
@@ -187,12 +194,12 @@ window.addEventListener("DOMContentLoaded", () => {
 
   addEventListeners(
     toggleButton1,
-    ["click", "touchstart"],
+    ["click", "touchstart", "keydown"],
     toggleHandler(toggleButton1, generateField)
   )
   addEventListeners(
     toggleButton2,
-    ["click", "touchstart"],
+    ["click", "touchstart", "keydown"],
     toggleHandler(toggleButton2, passwordField)
   )
 
