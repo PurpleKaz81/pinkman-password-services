@@ -1,12 +1,6 @@
-import { Modal, Popover } from "bootstrap"
-import {
-  randomPassword,
-  digits,
-  lower,
-  upper,
-  symbols,
-} from "secure-random-password"
-import crypto from "crypto"
+import * as bootstrap from 'bootstrap'
+import randomPassword from 'secure-random-password'
+const { digits, lower, upper, symbols } = randomPassword
 
 const ENTER = "Enter"
 const inputFields = document.querySelectorAll("input")
@@ -36,27 +30,28 @@ const [
 ].map((selector) => document.querySelector(selector))
 
 const generateRandomInt = (min, max) => {
-  const range = max - min + 1
-  const bytesNeeded = Math.ceil(Math.log2(range) / 8)
+  const range = max - min + 1;
+  const bytesNeeded = Math.ceil(Math.log2(range) / 8);
   if (bytesNeeded > 6) {
-    throw new Error("Too many bytes needed")
+    throw new Error("Too many bytes needed");
   }
-  const randomBytes = crypto.randomBytes(bytesNeeded)
-  let value = 0
+  const randomBytes = new Uint8Array(bytesNeeded);
+  window.crypto.getRandomValues(randomBytes);
+  let value = 0;
   for (let i = 0; i < bytesNeeded; i += 1) {
-    value = value * 256 + randomBytes[i]
+    value = value * 256 + randomBytes[i];
   }
-  return min + (value % range)
-}
+  return min + (value % range);
+};
 
 const generateRandomPassword = () => {
   const randomPasswordLength = generateRandomInt(8, 12)
   const characters = [digits, lower, upper, symbols]
-  return randomPassword({ randomPasswordLength, characters })
+  return randomPassword.randomPassword({ randomPasswordLength, characters })
 }
 
 const copyPasswordToClipboard = (password) => {
-  const popover = new Popover(generateField)
+  const popover = new bootstrap.Popover(generateField)
   popover.show()
 
   const dismissPopover = () => {
@@ -164,6 +159,30 @@ window.addEventListener("DOMContentLoaded", () => {
     togglePasswordVisibility(button, field)
   }
 
+  const handleSubmitEvent = (event) => {
+    event.preventDefault()
+    if (!validatePassword()) {
+      errorMsg.textContent =
+        "Password must have at least 8 characters and contain at least one uppercase letter, one number, and one special character."
+      showErrorAnimation()
+    } else {
+      errorMsg.textContent = ""
+      const successModal = new bootstrap.Modal(document.querySelector("#success-modal"))
+      modalBody.textContent = "Congrats on a strong password!"
+      modalBody.style.fontFamily = "Oswald, sans-serif"
+      successModal.show()
+      showSuccessAnimation(5)
+
+      const hideModalOnKeyDown = (e) => {
+        if (e.key === ENTER) {
+          successModal.hide()
+          document.removeEventListener("keydown", hideModalOnKeyDown)
+        }
+      }
+      successModal._element.addEventListener("keydown", hideModalOnKeyDown)
+    }
+  }
+
   addEventListeners(
     toggleButton1,
     ["click", "touchstart"],
@@ -175,54 +194,7 @@ window.addEventListener("DOMContentLoaded", () => {
     toggleHandler(toggleButton2, passwordField)
   )
 
-  submitButton?.addEventListener("click", (event) => {
-    event.preventDefault()
-    if (!validatePassword()) {
-      errorMsg.textContent =
-        "Password must have at least 8 characters and contain at least one uppercase letter, one number, and one special character."
-      showErrorAnimation()
-    } else {
-      errorMsg.textContent = ""
-      const successModal = new Modal(document.querySelector("#success-modal"))
-      modalBody.textContent = "Congrats on a strong password!"
-      modalBody.style.fontFamily = "Oswald, sans-serif"
-      successModal.show()
-      showSuccessAnimation(5)
-
-      const hideModalOnKeyDown = (e) => {
-        if (e.key === ENTER) {
-          successModal.hide()
-          document.removeEventListener("keydown", hideModalOnKeyDown)
-        }
-      }
-
-      successModal._element.addEventListener("keydown", hideModalOnKeyDown)
-    }
-  })
-
-  submitButton?.addEventListener("touchstart", (event) => {
-    event.preventDefault()
-    if (!validatePassword()) {
-      errorMsg.textContent =
-        "Password must have at least 8 characters and contain at least one uppercase letter, one number, and one special character."
-      showErrorAnimation()
-    } else {
-      errorMsg.textContent = ""
-      const successModal = new Modal(document.querySelector("#success-modal"))
-      modalBody.textContent = "Congrats on a strong password!"
-      modalBody.style.fontFamily = "Oswald, sans-serif"
-      successModal.show()
-      showSuccessAnimation(5)
-
-      const hideModalOnKeyDown = (e) => {
-        if (e.key === ENTER) {
-          successModal.hide()
-          document.removeEventListener("keydown", hideModalOnKeyDown)
-        }
-      }
-      document.addEventListener("keydown", hideModalOnKeyDown)
-    }
-  })
+  addEventListeners(submitButton, ["click", "touchstart"], handleSubmitEvent)
 
   passwordField?.addEventListener("keydown", (event) => {
     if (event.key === ENTER) {

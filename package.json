@@ -1,4 +1,5 @@
 {
+  "type": "module",
   "name": "pinkman-password-services",
   "version": "1.0.0",
   "description": "Jesse Pinkman fulfills your password needs in this web app",
