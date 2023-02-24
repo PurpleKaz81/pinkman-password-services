@@ -1,5 +1,5 @@
-import * as bootstrap from 'bootstrap'
-import randomPassword from 'secure-random-password'
+import * as bootstrap from "bootstrap"
+import randomPassword from "secure-random-password"
 const { digits, lower, upper, symbols } = randomPassword
 
 const ENTER = "Enter"
@@ -30,19 +30,19 @@ const [
 ].map((selector) => document.querySelector(selector))
 
 const generateRandomInt = (min, max) => {
-  const range = max - min + 1;
-  const bytesNeeded = Math.ceil(Math.log2(range) / 8);
+  const range = max - min + 1
+  const bytesNeeded = Math.ceil(Math.log2(range) / 8)
   if (bytesNeeded > 6) {
-    throw new Error("Too many bytes needed");
+    throw new Error("Too many bytes needed")
   }
-  const randomBytes = new Uint8Array(bytesNeeded);
-  window.crypto.getRandomValues(randomBytes);
-  let value = 0;
+  const randomBytes = new Uint8Array(bytesNeeded)
+  window.crypto.getRandomValues(randomBytes)
+  let value = 0
   for (let i = 0; i < bytesNeeded; i += 1) {
-    value = value * 256 + randomBytes[i];
+    value = value * 256 + randomBytes[i]
   }
-  return min + (value % range);
-};
+  return min + (value % range)
+}
 
 const generateRandomPassword = () => {
   const randomPasswordLength = generateRandomInt(8, 12)
@@ -167,7 +167,9 @@ window.addEventListener("DOMContentLoaded", () => {
       showErrorAnimation()
     } else {
       errorMsg.textContent = ""
-      const successModal = new bootstrap.Modal(document.querySelector("#success-modal"))
+      const successModal = new bootstrap.Modal(
+        document.querySelector("#success-modal")
+      )
       modalBody.textContent = "Congrats on a strong password!"
       modalBody.style.fontFamily = "Oswald, sans-serif"
       successModal.show()
