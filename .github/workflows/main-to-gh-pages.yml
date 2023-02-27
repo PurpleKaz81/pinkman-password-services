@@ -1,0 +1,30 @@
+name: Main to gh-pages
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Setup Node.js and Yarn
+      uses: actions/setup-node@v2
+      with:
+        node-version: '14.x'
+        yarn-cache-folder: '~/.cache/yarn'
+
+    - name: Install dependencies and build
+      run: |
+        yarn install
+        yarn build
+
+    - name: Deploy
+      uses: JamesIves/github-pages-deploy-action@4.1.4
+      with:
+        branch: gh-pages
+        folder: path/to/build/folder

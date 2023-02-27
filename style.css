@@ -37,6 +37,7 @@ body::before {
   background-position: center;
   opacity: 0.33;
   z-index: -1;
+  overflow-y: hidden;
 }
 
 .col {
