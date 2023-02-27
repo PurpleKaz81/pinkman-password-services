@@ -27,4 +27,5 @@ jobs:
       uses: JamesIves/github-pages-deploy-action@4.1.4
       with:
         branch: gh-pages
-        folder: path/to/build/folder
+        folder: dist
+        token: ${{ secrets.GITHUB_TOKEN }}
