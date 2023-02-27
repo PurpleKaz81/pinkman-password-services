@@ -26,7 +26,7 @@ The project includes the following features:
 
 To use the Pinkman Password Services web app:
 
-1. Open the web app in your browser.
+1. Open [Pinkman Password Services](https://purplekaz81.github.io/pinkman-password-services/) in your browser.
 2. Click the `Make It Random!` button to generate a random password and copy it to your clipboard.
 3. Paste the password into the password authenticator field and click or hit `Make It Happen`. The password authenticator will check whether the password meets certain criteria (e.g. includes upper and lower case letters, numbers, and special characters).
 4. If the password is valid, a Bootstrap 5 modal will appear with a success message. If the password is invalid, an error message will appear below the submit button.
