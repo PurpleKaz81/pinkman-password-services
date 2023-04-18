@@ -71,7 +71,7 @@ The Pinkman Password Services project has the following dependencies:
 
 The following fonts are used in the project:
 
-- Oswald: `https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500&display=swap`
+- [Oswald](https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500&display=swap)
 - [Heart-Breaking-Bad](https://www.dafont.com/heart-breaking-bad.font)
 - [Breaking-Bad-1](https://www.dafont.com/breaking-b.font)
 - [BREAKING-BAD](https://www.dafont.com/pt/breaking-bad.font)
